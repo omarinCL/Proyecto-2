@@ -1,20 +1,37 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import LoginContainer from './containers/Login/Login.container'
-import EpisodiosContainer from './containers/Episodios/Episodios.container'
-import PersonajesContainer from './containers/Personajes/Personajes.container'
-import UsuariosContainer from './containers/Usuarios/Usuarios.container'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import HomePage from './views/Home.page'
+import LoginPage from './views/Login.page'
+import EpisodiosPage from './views/Episodios.page'
+import PersonajesPage from './views/Personajes.page'
+import UsuariosPage from './views/Usuarios.page'
+import store from './redux/store'
+import { Provider } from 'react-redux'
+import PrivateRoute from './containers/Routes/PrivateRoute.container'
+import Header from './containers/Header/Header.container'
+import { Container } from 'react-bootstrap'
 
-function App () {
+const App = () => {
   return (
-    <Router>
-      <Switch>
-        <Route exact path='/login' component={LoginContainer} />
-        <Route exact path='/episodios' component={EpisodiosContainer} />
-        <Route exact path='/personajes' component={PersonajesContainer} />
-        <Route exact path='/usuarios' component={UsuariosContainer} />
-      </Switch>
-    </Router>
+    <>
+      <Provider store={store}>
+        <Router>
+          <Header />
+          <Container>
+            <Switch>
+              <Route exact path='/' component={HomePage} />
+              <Route exact path='/login' component={LoginPage} />
+              <PrivateRoute exact path='/episodios' component={EpisodiosPage} />
+              <PrivateRoute exact path='/personajes' component={PersonajesPage} />
+              <PrivateRoute exact path='/usuarios' component={UsuariosPage} />
+              <Route exact path='/error/403' render={() => <div>Error 403</div>} />
+              <Route path='*' render={() => <div>Error 404</div>} />
+            </Switch>
+          </Container>
+        </Router>
+      </Provider>
+    </>
   )
 }
 
