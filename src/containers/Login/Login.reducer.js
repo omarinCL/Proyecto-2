@@ -1,4 +1,5 @@
 import { ADD_FAVORITE_EPISODE, REMOVE_FAVORITE_EPISODE } from '../Episodios/Episodios.actions'
+import { ADD_FAVORITE_CHARACTER, REMOVE_FAVORITE_CHARACTER } from '../Personajes/Personajes.actions'
 
 const initialState = {
   users: [
@@ -35,6 +36,22 @@ const loginReducer = (state = initialState, action) => {
     case REMOVE_FAVORITE_EPISODE: {
       const user = state.users.find(user => user.id === action.payload.userId)
       user.favoriteEpisodes = user.favoriteEpisodes.filter(epId => epId !== action.payload.episodeId)
+      return {
+        ...state,
+        users: state.users.filter(user => user.id !== action.payload.userId).concat(user)
+      }
+    }
+    case ADD_FAVORITE_CHARACTER: {
+      const user = state.users.find(user => user.id === action.payload.userId)
+      user.favoriteCharacters = user.favoriteCharacters.concat([action.payload.characterId])
+      return {
+        ...state,
+        users: state.users.filter(user => user.id !== action.payload.userId).concat(user)
+      }
+    }
+    case REMOVE_FAVORITE_CHARACTER: {
+      const user = state.users.find(user => user.id === action.payload.userId)
+      user.favoriteCharacters = user.favoriteCharacters.filter(epId => epId !== action.payload.characterId)
       return {
         ...state,
         users: state.users.filter(user => user.id !== action.payload.userId).concat(user)

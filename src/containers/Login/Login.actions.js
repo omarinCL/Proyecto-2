@@ -3,7 +3,7 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 
 export const onLogin = payload => (dispatch, getState) => {
   const state = getState()
-  const foundUser = state.loginReducer.users.find(user => user.email === payload.email && user.password === payload.password)
+  const [foundUser] = state.loginReducer.users.filter(user => user.email === payload.email && user.password === payload.password)
 
   if (foundUser) {
     dispatch(onLoginSuccess({ user: foundUser }))

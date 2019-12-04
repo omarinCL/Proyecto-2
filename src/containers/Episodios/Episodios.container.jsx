@@ -14,7 +14,7 @@ const EpisodiosContainer = () => {
 
   const dispatch = useDispatch()
   useEffect(() => {
-    dispatch(getEpisodes())
+    if (episodes.length === 0) dispatch(getEpisodes())
     // eslint-disable-next-line
   }, [])
 
@@ -34,11 +34,12 @@ const EpisodiosContainer = () => {
     <>
       <Row>
         <Col>
-          <h2>Listado de episodios</h2>
+          <h2>Episodios</h2>
+          <hr />
           <Table size='sm'>
             <tbody>
               {episodes.map(e => (
-                <tr key={e.id}>
+                <tr key={e.id + '-episodio'}>
                   <td>
                     {e.episode} - {e.name} - <em>Fecha de emisión: {e.air_date}</em>
                   </td>
