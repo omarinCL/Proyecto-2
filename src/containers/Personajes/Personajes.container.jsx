@@ -3,6 +3,7 @@ import { CardColumns, Card, Row, Col, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCharacters, addFavoriteCharacter, removeFavoriteCharacter } from './Personajes.actions'
 import Favorite from './../../components/Favorite'
+import Spinner from '../../components/Spinner'
 
 const PersonajesContainer = () => {
   const { characters, favoriteCharacters, nextUrl, loading } = useSelector(state => ({
@@ -34,6 +35,7 @@ const PersonajesContainer = () => {
     <>
       <h2>Personajes</h2>
       <hr />
+      <Spinner show={loading} />
       <CardColumns>
         {characters.map(character => (
           <Card key={character.id + '-character'}>
@@ -41,9 +43,11 @@ const PersonajesContainer = () => {
             <Card.Body>
               <Card.Title>{character.name}</Card.Title>
               <Card.Text>
-                {character.gender}
+                Gender: {character.gender}
                 <br />
-                {character.species}
+                Specie: {character.species}
+                <br />
+                Id: {character.id}
                 <br />
                 <Favorite
                   isFavorite={favoriteCharacters.some(id => id === character.id)}

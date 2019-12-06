@@ -43,6 +43,12 @@
   outline: none !important;
 }
 
+.login-clean .error-message {
+  max-width: 320px;
+  width: 90%;
+  margin: 0 auto;
+}
+
 .login-clean form .btn-primary:active {
   transform: translateY(1px);
 }

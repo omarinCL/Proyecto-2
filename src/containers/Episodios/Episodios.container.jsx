@@ -3,6 +3,7 @@ import { Table, Row, Col, Button } from 'react-bootstrap'
 import Favorite from '../../components/Favorite'
 import { useDispatch, useSelector } from 'react-redux'
 import { getEpisodes, addFavoriteEpisode, removeFavoriteEpisode } from './Episodios.actions'
+import Spinner from '../../components/Spinner'
 
 const EpisodiosContainer = () => {
   const { episodes, favoriteEpisodes, nextUrl, loading } = useSelector(state => ({
@@ -36,6 +37,7 @@ const EpisodiosContainer = () => {
         <Col>
           <h2>Episodios</h2>
           <hr />
+          <Spinner show={loading} />
           <Table size='sm'>
             <tbody>
               {episodes.map(e => (

@@ -8,16 +8,24 @@ const initialState = {
       name: 'Orlando',
       email: 'orlando@chilecompra.cl',
       password: 'orlando123',
-      favoriteEpisodes: [],
-      favoriteCharacters: []
+      favoriteEpisodes: [2, 7],
+      favoriteCharacters: [3, 5]
     },
     {
       id: 2,
       name: 'Oscar',
       email: 'oscar@chilecompra.cl',
       password: 'oscar123',
-      favoriteEpisodes: [],
-      favoriteCharacters: []
+      favoriteEpisodes: [3, 5],
+      favoriteCharacters: [1, 2]
+    },
+    {
+      id: 3,
+      name: 'Pedro',
+      email: 'pedro@chilecompra.cl',
+      password: 'pedro123',
+      favoriteEpisodes: [1, 6],
+      favoriteCharacters: [4, 9]
     }
   ]
 }
